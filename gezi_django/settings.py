@@ -83,6 +83,8 @@ DATABASES = {
         'NAME': 'gezi_db',
         'USER': 'geziadmin',
         'PASSWORD': 'secret',
+        'HOST': 'localhost',
+        'PORT': '3332',
     }
 }
 

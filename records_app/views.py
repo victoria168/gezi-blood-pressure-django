@@ -35,6 +35,35 @@ class RecordViewSet(viewsets.ModelViewSet):
         user = self.request.user
         return Record.objects.filter(user_id=user.id).order_by('-date')
 
+    @action(methods=['post'], detail=False, url_path='create_record',
+            url_name='create_record')
+    def create_record(self, request):
+        user = request.user
+        print(user)
+        print(request)
+        # Check for mandatory fields
+        if not (request.data.get('date')):
+            error = {'Error': 'date is a required field.'}
+            return Response(error, status=status.HTTP_400_BAD_REQUEST)
+        if not (request.data.get('systolic')):
+            error = {'Error': 'systolic is a required field.'}
+            return Response(error, status=status.HTTP_400_BAD_REQUEST)
+        if not (request.data.get('diastolic')):
+            error = {'Error': 'diastolic is a required field.'}
+            return Response(error, status=status.HTTP_400_BAD_REQUEST)
+        if not (request.data.get('pulse')):
+            error = {'Error': 'pulse is a required field.'}
+            return Response(error, status=status.HTTP_400_BAD_REQUEST)
+
+        Record.objects.create(
+            date=request.data.get('date'),
+            user_id=user.id,
+            systolic=request.data.get('systolic'),
+            diastolic=request.data.get('diastolic'),
+            pulse=request.data.get('pulse'))
+
+        return Response("created", status=status.HTTP_201_CREATED)
+
 
 class UserViewSet(viewsets.ModelViewSet):
 

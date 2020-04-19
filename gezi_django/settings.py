@@ -26,7 +26,7 @@ SECRET_KEY = 'm%ib08=71pm1%we-ln!nhhaxdeij_t$ku7lo9glk*00kymz&a_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '54.234.212.217']
 
 
 # Application definition
@@ -84,7 +84,7 @@ DATABASES = {
         'USER': 'geziadmin',
         'PASSWORD': 'secret',
         'HOST': 'localhost',
-        'PORT': '3332',
+        'PORT': '5432',
     }
 }
 
